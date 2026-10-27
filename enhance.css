@@ -1,0 +1,991 @@
+/* enhance.css — style.css er PORE load hobe */
+html {
+    -webkit-tap-highlight-color: transparent
+}
+
+.button,
+.nav-cta,
+.project-details-button,
+.menu-toggle,
+.dialog-close {
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px
+}
+
+/* ---- Page-load intro (hero) ---- */
+.hero-copy>*,
+.hero-visual {
+    opacity: 0;
+    animation: rise .9s cubic-bezier(.2, .7, .2, 1) forwards
+}
+
+.hero-copy>*:nth-child(1) {
+    animation-delay: .05s
+}
+
+.hero-copy>*:nth-child(2) {
+    animation-delay: .15s
+}
+
+.hero-copy>*:nth-child(3) {
+    animation-delay: .25s
+}
+
+.hero-copy>*:nth-child(4) {
+    animation-delay: .38s
+}
+
+.hero-copy>*:nth-child(5) {
+    animation-delay: .48s
+}
+
+.hero-copy>*:nth-child(6) {
+    animation-delay: .58s
+}
+
+.hero-copy>*:nth-child(7) {
+    animation-delay: .68s
+}
+
+.hero-visual {
+    animation-delay: .35s
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(34px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.hero h1 .hero-title-accent {
+    background: linear-gradient(100deg, var(--gold), var(--gold-bright), var(--gold));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite
+}
+
+@keyframes shine {
+    to {
+        background-position: -200% 0
+    }
+}
+
+.hero-title-outline {
+    transition: color .4s, -webkit-text-stroke-color .4s
+}
+
+.hero h1:hover .hero-title-outline {
+    color: var(--paper);
+    -webkit-text-stroke-color: var(--paper)
+}
+
+.typed {
+    color: var(--gold-bright)
+}
+
+.caret {
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    margin-left: 3px;
+    vertical-align: -2px;
+    background: var(--gold);
+    animation: blink 1s steps(2) infinite
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0
+    }
+}
+
+.hero-tech-tags span {
+    transition: .25s
+}
+
+.hero-tech-tags span:hover,
+.skill-pills span:hover,
+.project-tech span:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    transform: translateY(-3px);
+    background: rgba(212, 168, 87, .07)
+}
+
+.skill-pills span,
+.project-tech span {
+    transition: .25s;
+    cursor: default
+}
+
+/* ---- Reveal: stronger + stagger ---- */
+.reveal {
+    transform: translateY(40px) scale(.98);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1)
+}
+
+.reveal.visible {
+    transform: none
+}
+
+.skill-pills span {
+    opacity: 0;
+    transform: translateY(10px)
+}
+
+.visible .skill-pills span {
+    opacity: 1;
+    transform: none;
+    transition: opacity .5s ease, transform .5s ease, border-color .25s, color .25s, background .25s;
+    transition-delay: calc(var(--i, 0)*45ms + .2s)
+}
+
+.visible .skill-pills span:hover {
+    transition-delay: 0s
+}
+
+/* ---- Spotlight cards (mouse + touch) ---- */
+.project-card,
+.skill-group,
+.education-card,
+.contact-row {
+    position: relative;
+    --mx: 50%;
+    --my: 50%
+}
+
+.project-card:before,
+.skill-group:before,
+.education-card:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity .3s;
+    background: radial-gradient(260px circle at var(--mx) var(--my), rgba(232, 194, 114, .14), transparent 65%)
+}
+
+.project-card.lit:before,
+.skill-group.lit:before,
+.education-card.lit:before {
+    opacity: 1
+}
+
+.project-card {
+    cursor: pointer;
+    transition: transform .25s ease-out, border-color .3s, background .3s, box-shadow .3s;
+    will-change: transform
+}
+
+.project-card:hover {
+    box-shadow: 0 25px 60px #0007, 0 0 0 1px rgba(212, 168, 87, .25)
+}
+
+.project-card:active {
+    transform: scale(.985)
+}
+
+.project-art-symbol {
+    transition: transform .5s, color .3s
+}
+
+.project-card:hover .project-art-symbol {
+    transform: rotate(20deg) scale(1.3);
+    color: var(--gold)
+}
+
+.project-art:before {
+    animation: orbitSpin 40s linear infinite
+}
+
+.project-art:after {
+    animation: orbitSpin 55s linear infinite reverse
+}
+
+.code-window,
+.fitness-window,
+.inbox-window {
+    transition: transform .5s
+}
+
+.project-card:hover .code-window,
+.project-card:hover .fitness-window,
+.project-card:hover .inbox-window {
+    transform: translateY(-6px) scale(1.04)
+}
+
+.fitness-bars i {
+    transform-origin: bottom;
+    transform: scaleY(.2);
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1)
+}
+
+.visible .fitness-bars i {
+    transform: none
+}
+
+.fitness-bars i:nth-child(2) {
+    transition-delay: .08s
+}
+
+.fitness-bars i:nth-child(3) {
+    transition-delay: .16s
+}
+
+.fitness-bars i:nth-child(4) {
+    transition-delay: .24s
+}
+
+.fitness-bars i:nth-child(5) {
+    transition-delay: .32s
+}
+
+.fitness-bars i:nth-child(6) {
+    transition-delay: .4s
+}
+
+.fitness-bars i:nth-child(7) {
+    transition-delay: .48s
+}
+
+.inbox-reply {
+    animation: pulseRep 2.4s ease-in-out infinite
+}
+
+@keyframes pulseRep {
+    50% {
+        background: #26331f;
+        color: var(--paper)
+    }
+}
+
+.code-window small:after {
+    content: "▍";
+    color: var(--gold);
+    animation: blink 1s steps(2) infinite
+}
+
+/* card action buttons (JS inject kore) */
+.card-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    position: relative;
+    z-index: 4
+}
+
+.card-links a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #424333;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--paper);
+    transition: .25s
+}
+
+.card-links a:hover,
+.card-links a:active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+    transform: translateY(-2px)
+}
+
+.card-links a.is-empty {
+    opacity: .6
+}
+
+.project-details-button {
+    position: relative;
+    z-index: 4
+}
+
+.project-details-button span {
+    transition: transform .3s
+}
+
+.project-details-button:hover span {
+    transform: translate(4px, -4px)
+}
+
+/* ---- Other hover/tap polish ---- */
+.contact-row {
+    transition: padding .3s, background .3s
+}
+
+.contact-row:hover,
+.contact-row:active {
+    padding-left: 14px;
+    background: rgba(212, 168, 87, .04)
+}
+
+.contact-arrow {
+    transition: transform .3s
+}
+
+.contact-row:hover .contact-arrow {
+    transform: translate(4px, -4px)
+}
+
+.about-facts>div {
+    transition: padding .3s, background .3s
+}
+
+.about-facts>div:hover {
+    padding-left: 12px;
+    background: rgba(212, 168, 87, .04)
+}
+
+.fact-symbol {
+    transition: .3s
+}
+
+.about-facts>div:hover .fact-symbol {
+    background: var(--gold);
+    color: var(--bg);
+    transform: rotate(90deg)
+}
+
+.education-card {
+    transition: transform .3s, border-color .3s
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold-deep)
+}
+
+.education-icon {
+    animation: spinSlow 12s linear infinite
+}
+
+@keyframes spinSlow {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.nav-links a {
+    position: relative
+}
+
+.nav-links a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s
+}
+
+.nav-links a:hover:after,
+.nav-links a[aria-current="location"]:after {
+    transform: scaleX(1)
+}
+
+.button .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .35);
+    transform: scale(0);
+    animation: ripple .6s ease-out forwards;
+    pointer-events: none
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0
+    }
+}
+
+.magnetic {
+    transition: transform .2s ease-out, background .22s
+}
+
+/* dialog animation */
+.project-dialog[open] {
+    animation: dlg .35s cubic-bezier(.2, .7, .2, 1)
+}
+
+.project-dialog[open]::backdrop {
+    animation: fade .35s
+}
+
+@keyframes dlg {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.96)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+}
+
+/* toast */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    z-index: 1000;
+    max-width: calc(100% - 32px);
+    padding: 12px 18px;
+    background: var(--surface-2);
+    border: 1px solid var(--gold);
+    color: var(--paper);
+    font-size: 12px;
+    transform: translate(-50%, 30px);
+    opacity: 0;
+    pointer-events: none;
+    transition: .35s
+}
+
+.toast.show {
+    transform: translate(-50%, 0);
+    opacity: 1
+}
+
+/* ---- Mobile ---- */
+.nav-links {
+    transition: opacity .25s, transform .25s
+}
+
+@media(max-width:760px) {
+    .nav-links {
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        max-height: calc(100vh - 80px);
+        overflow: auto
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        transform: none
+    }
+
+    .nav-links a {
+        padding: 15px 2px;
+        font-size: 14px
+    }
+
+    .button,
+    .card-links a {
+        min-height: 48px
+    }
+
+    .floating-chip {
+        font-size: 8px
+    }
+
+    .scroll-indicator {
+        display: none
+    }
+
+    .hero-visual {
+        padding-inline: 22px
+    }
+
+    .section-heading h2,
+    .contact-copy h2 {
+        overflow-wrap: anywhere
+    }
+
+    .education-card {
+        grid-template-columns: 42px 1fr
+    }
+
+    .hero-description,
+    .about-details>p,
+    .section-intro,
+    .contact-copy>p:not(.section-index) {
+        font-size: 13.5px
+    }
+}
+
+@media(hover:none) {
+    .project-card:hover {
+        transform: none
+    }
+
+    .hero-tech-tags span:hover {
+        transform: none
+    }
+}
+
+/* ---- Reduced-motion: phone e "animation remove" on thakle o animation cholbe, shudhu bishal movement komano ---- */
+@media(prefers-reduced-motion:reduce) {
+    html body .reveal {
+        transition-duration: .7s !important;
+        transition-delay: 0s !important
+    }
+
+    html body .hero-copy>*,
+    html body .hero-visual {
+        animation-duration: .8s !important;
+        animation-iteration-count: 1 !important
+    }
+
+    html body .marquee-track {
+        animation-duration: 45s !important;
+        animation-iteration-count: infinite !important
+    }
+
+    html body .floating-chip,
+    html body .scroll-indicator,
+    html body .scroll-line,
+    html body .orbit-two,
+    html body .caret,
+    html body .hero-title-accent,
+    html body .inbox-reply {
+        animation-duration: 5s !important;
+        animation-iteration-count: infinite !important
+    }
+
+    html body .orbit-two {
+        animation-duration: 60s !important
+    }
+
+    html body .project-card,
+    html body .button,
+    html body .skill-pills span,
+    html body .contact-row {
+        transition-duration: .25s !important
+    }
+
+    html body .fitness-bars i {
+        transition-duration: .8s !important
+    }
+}
+
+/* ===== v3: modal cursor, scroll system, tech-stack, BazarDor, to-top ===== */
+.project-dialog,
+.project-dialog * {
+    cursor: auto !important
+}
+
+.project-dialog button,
+.project-dialog a {
+    cursor: pointer !important
+}
+
+.project-dialog .toast {
+    position: fixed
+}
+
+/* split-word heading reveal */
+.w {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: .16em;
+    margin-bottom: -.16em
+}
+
+.wi {
+    display: inline-block;
+    transform: translateY(112%) rotate(5deg);
+    transform-origin: left bottom;
+    transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+    transition-delay: var(--d, 0s)
+}
+
+.visible .wi {
+    transform: none
+}
+
+.section-heading h2 .w,
+.section-heading h2 .wi,
+.contact-copy h2 .w,
+.contact-copy h2 .wi {
+    color: inherit
+}
+
+.sw {
+    display: inline;
+    opacity: .16
+}
+
+/* scroll-scrubbed (driven by --p 0..1 from script) */
+.scrub {
+    opacity: calc(.08 + var(--p, 1)*.92);
+    will-change: translate, opacity
+}
+
+.scrub.s-line {
+    opacity: 1
+}
+
+.s-lr.from-l {
+    translate: calc((1 - var(--p, 1))*-70px) 0
+}
+
+.s-lr.from-r {
+    translate: calc((1 - var(--p, 1))*70px) 0
+}
+
+.s-rise {
+    translate: 0 calc((1 - var(--p, 1))*70px)
+}
+
+.s-tilt {
+    transform-origin: 50% 100%;
+    translate: 0 calc((1 - var(--p, 1))*80px);
+    rotate: 1 0 0 calc((1 - var(--p, 1))*16deg)
+}
+
+.s-wipe {
+    clip-path: inset(0 calc((1 - var(--p, 1))*100%) 0 0)
+}
+
+.project-grid {
+    perspective: 1400px
+}
+
+.section-heading .section-index:after,
+.contact-copy .section-index:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: calc(var(--p, 1)*100%);
+    max-width: 130px;
+    margin-top: 12px;
+    background: var(--gold)
+}
+
+.hero-copy {
+    translate: 0 calc(var(--hp, 0)*-60px);
+    opacity: calc(1 - var(--hp, 0)*.9)
+}
+
+.tech-marquee {
+    will-change: transform
+}
+
+/* tech stack extras */
+@property --ang {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg
+}
+
+.skill-group:after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    pointer-events: none;
+    z-index: 4;
+    background: conic-gradient(from var(--ang), transparent 0 70%, var(--gold) 86%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .4s;
+    animation: ang 4s linear infinite
+}
+
+.skill-group:hover:after,
+.skill-group.lit:after {
+    opacity: 1
+}
+
+@keyframes ang {
+    to {
+        --ang: 360deg
+    }
+}
+
+.skill-pills span {
+    position: relative;
+    overflow: hidden
+}
+
+.skill-pills span:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(232, 194, 114, .28), transparent);
+    transform: skewX(-20deg);
+    animation: sweep 7s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0)*.45s + 1s)
+}
+
+@keyframes sweep {
+
+    0%,
+    18% {
+        left: -60%
+    }
+
+    38%,
+    100% {
+        left: 140%
+    }
+}
+
+.visible .skill-pills span {
+    animation: pop .7s cubic-bezier(.2, 1.4, .4, 1) backwards;
+    animation-delay: calc(var(--i, 0)*60ms + .2s)
+}
+
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: scale(.4) translateY(14px) rotate(-8deg)
+    }
+
+    100% {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.skill-group h3 {
+    position: relative;
+    display: inline-block
+}
+
+.skill-group h3:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 1px;
+    width: 0;
+    background: var(--gold);
+    transition: width .8s .4s cubic-bezier(.2, .8, .2, 1)
+}
+
+.visible .skill-group-head h3:after,
+.skill-group.visible h3:after {
+    width: 100%
+}
+
+.skill-group-number {
+    display: inline-block;
+    transition: transform .5s
+}
+
+.skill-group:hover .skill-group-number {
+    transform: scale(1.4) rotate(-8deg)
+}
+
+.skill-group:hover .skill-pills span {
+    border-color: #3a3f2c
+}
+
+/* BazarDor art */
+.project-art-bajar {
+    background: radial-gradient(ellipse at 50% 45%, #1f2b22 0%, #11170f 68%)
+}
+
+.price-window {
+    position: relative;
+    z-index: 1;
+    width: min(75%, 310px);
+    padding: 18px;
+    background: rgba(10, 13, 10, .88);
+    border: 1px solid #444633;
+    box-shadow: 0 15px 45px #0005;
+    transition: transform .5s
+}
+
+.project-card:hover .price-window {
+    transform: translateY(-6px) scale(1.04)
+}
+
+.price-window>span {
+    display: block;
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 10px
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule)
+}
+
+.price-row i {
+    flex: 1;
+    height: 6px;
+    background: #2b3326;
+    position: relative;
+    overflow: hidden
+}
+
+.price-row i:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gold-deep);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.1s .3s cubic-bezier(.2, .8, .2, 1)
+}
+
+.visible .price-row i:after {
+    transform: scaleX(var(--w))
+}
+
+.price-row b {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--paper-faint);
+    min-width: 14px;
+    text-align: right
+}
+
+.price-row .up {
+    color: var(--gold-bright);
+    animation: nudge 2s ease-in-out infinite
+}
+
+.price-row .down {
+    color: var(--paper-dim);
+    animation: nudge 2s ease-in-out infinite reverse
+}
+
+@keyframes nudge {
+    50% {
+        transform: translateY(-3px)
+    }
+}
+
+/* back to top */
+.to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 150;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 18, 14, .92);
+    border: 0;
+    color: var(--gold-bright);
+    font-size: 18px;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(.8);
+    transition: .35s;
+    backdrop-filter: blur(8px)
+}
+
+.to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: none
+}
+
+.to-top:hover {
+    transform: translateY(-4px);
+    color: var(--bg);
+    background: var(--gold)
+}
+
+.to-top svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg)
+}
+
+.to-top circle {
+    fill: none;
+    stroke-width: 2
+}
+
+.to-top .ring-bg {
+    stroke: var(--rule)
+}
+
+.to-top .ring {
+    stroke: var(--gold);
+    stroke-dasharray: 125.66;
+    stroke-dashoffset: 125.66
+}
+
+.to-top span {
+    position: relative
+}
+
+@media(max-width:480px) {
+    .to-top {
+        right: 14px;
+        bottom: 14px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    html body .skill-pills span:after,
+    html body .skill-group:after {
+        animation-duration: 6s !important;
+        animation-iteration-count: infinite !important
+    }
+
+    html body .skill-pills span,
+    html body .price-row .up,
+    html body .price-row .down {
+        animation-duration: .7s !important
+    }
+
+    html body .wi,
+    html body .price-row i:after,
+    html body .to-top {
+        transition-duration: .9s !important
+    }
+}
+
+[hidden] {
+    display: none !important
+}
